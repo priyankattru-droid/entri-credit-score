@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entri Elevate — My Credits</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #212121;
+    --ink-2: #616161;
+    --ink-3: #9e9e9e;
+    --ink-4: #b2b2b2;
+    --surface: #ffffff;
+    --surface-2: #f5f5f5;
+    --surface-3: #eeeeee;
+    --border: #f0f0f0;
+    --border-em: #e0e0e0;
+    --lc: #185FA5;
+    --lc-bg: #e6f3ff;
+    --lc-dot: #185FA5;
+    --ac: #7F77DD;
+    --ac-bg: #EEEDFE;
+    --ac-dot: #7F77DD;
+    --cc: #1D9E75;
+    --cc-bg: #EAF3DE;
+    --cc-dot: #1D9E75;
+    --dc: #BA7517;
+    --dc-bg: #FAEEDA;
+    --dc-dot: #BA7517;
+    --entri-blue: #0061b5;
+    --entri-blue-bg: #e6f3ff;
+    --r: 8px;
+    --r-lg: 16px;
+    --r-full: 200px;
+    --sp-xs: 2px; --sp-s: 4px; --sp-m: 8px;
+    --sp-l: 12px; --sp-xl: 16px; --sp-2xl: 24px; --sp-3xl: 32px;
+  }
+  body { font-family: 'Inter', sans-serif; background: var(--surface-2); color: var(--ink); min-height: 100vh; padding-bottom: 5rem; font-size: 14px; line-height: 1.6; }
+  .display { font-family: 'Inter', sans-serif; }
+
+  /* Topbar */
+  .topbar {
+    position: sticky; top: 0; z-index: 10;
+    background: var(--surface); border-bottom: 1px solid var(--border);
+    padding: var(--sp-l) var(--sp-2xl);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .topbar-brand { display: flex; align-items: center; }
+  .topbar-brand svg { display: block; }
+  .topbar-course { font-size: 12px; color: var(--ink-3); }
+
+  /* Archetype bar */
+  .arch-bar {
+    background: var(--surface-2); border-bottom: 1px solid var(--border);
+    padding: 0.625rem 1.25rem; display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none;
+  }
+  .arch-bar::-webkit-scrollbar { display: none; }
+  .arch-chip {
+    flex-shrink: 0; padding: 5px 14px; border-radius: 99px;
+    border: 1px solid var(--border); background: var(--surface);
+    font-size: 12px; font-weight: 500; color: var(--ink-2); cursor: pointer; transition: all 0.15s;
+  }
+  .arch-chip.active { background: var(--entri-blue); color: var(--surface); border-color: var(--entri-blue); }
+
+  .container { max-width: 480px; margin: 0 auto; padding: 0 1.25rem; }
+
+  /* Hero */
+  .hero { padding: 1.75rem 0 1.5rem; border-bottom: 1px solid var(--border); }
+  .hero-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 0.5rem; }
+  .score-row { display: flex; align-items: baseline; gap: 6px; margin-bottom: 4px; }
+  .score-big { font-family: 'Inter', sans-serif; font-size: 64px; font-weight: 700; line-height: 1; color: var(--ink); }
+  .score-denom { font-family: 'Inter', sans-serif; font-size: 24px; font-weight: 400; color: var(--ink-3); }
+  .score-sub { font-size: 13px; color: var(--ink-2); margin-bottom: 1.5rem; }
+
+  .track { height: 6px; background: var(--surface-3); border-radius: 99px; position: relative; overflow: visible; margin-bottom: 6px; }
+  .track-fill { height: 100%; border-radius: 99px; background: var(--entri-blue); transition: width 0.7s cubic-bezier(.4,0,.2,1); position: relative; }
+  .track-fill::after { content:''; position:absolute; right:-1px; top:-2px; width:10px; height:10px; border-radius:50%; background:var(--ink); border:2px solid var(--surface); }
+  .track-marker { position: absolute; top: -4px; width: 1.5px; height: 14px; background: var(--border-em); border-radius: 1px; }
+  .track-labels { display: flex; font-size: 11px; color: var(--ink-3); height: 16px; position: relative; }
+  .t-lbl { position: absolute; transform: translateX(-50%); }
+
+  /* Nudge */
+  .nudge {
+    margin-top: var(--sp-2xl); padding: var(--sp-l) var(--sp-xl);
+    background: var(--entri-blue-bg); border-radius: var(--r);
+    border-left: 3px solid var(--entri-blue);
+    display: flex; align-items: flex-start; gap: var(--sp-l);
+  }
+  .nudge-body { flex: 1; }
+  .nudge-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 3px; line-height: 1.4; }
+  .nudge-sub { font-size: 12px; color: var(--ink-2); line-height: 1.6; }
+  .nudge-pill {
+    flex-shrink: 0; align-self: center; margin-left: 8px;
+    font-size: 11px; font-weight: 500; padding: 4px 10px;
+    border-radius: 99px; background: var(--cc-bg); color: var(--cc);
+    white-space: nowrap;
+  }
+
+  /* Milestone marker icons + tooltips */
+  .track-marker-wrap {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    display: flex; flex-direction: column; align-items: center;
+    cursor: pointer; z-index: 2;
+  }
+  .track-marker-icon {
+    width: 20px; height: 20px; border-radius: 50%;
+    border: 2px solid var(--surface);
+    display: flex; align-items: center; justify-content: center;
+    margin-top: -2px; flex-shrink: 0;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+  }
+  .track-marker-icon svg { width: 10px; height: 10px; }
+  .marker-tooltip {
+    position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+    background: var(--ink); color: #fff;
+    font-size: 11px; font-weight: 500; white-space: nowrap;
+    padding: 5px 10px; border-radius: var(--r);
+    pointer-events: none; opacity: 0; transition: opacity 0.15s;
+    z-index: 10;
+  }
+  .marker-tooltip::after {
+    content: ''; position: absolute; top: 100%; left: 50%;
+    transform: translateX(-50%); border: 4px solid transparent;
+    border-top-color: var(--ink);
+  }
+  .track-marker-wrap:hover .marker-tooltip { opacity: 1; }
+  .completion {
+    margin-top: 1.25rem; padding: 16px; border-radius: var(--r);
+    display: none;
+  }
+  .completion.show { display: block; }
+  .completion-title { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 400; margin-bottom: 4px; }
+  .completion-sub { font-size: 13px; line-height: 1.6; }
+
+  /* Section */
+  .section { padding: 1.75rem 0 0; }
+  .section-title { font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 0.25rem; letter-spacing: 0.15px; }
+  .section-sub { font-size: 13px; color: var(--ink-2); margin-bottom: 1.25rem; line-height: 1.6; }
+
+  /* Module card */
+  .module-card {
+    border: 1px solid var(--border); border-radius: var(--r-lg);
+    background: var(--surface); margin-bottom: 10px; overflow: hidden;
+  }
+  .module-card-header {
+    padding: 14px 16px; display: flex; align-items: center; gap: 12px;
+    cursor: pointer; user-select: none;
+  }
+  .module-chevron-btn {
+    width: 32px; height: 32px; border-radius: var(--r);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; transition: background 0.15s;
+  }
+  .module-chevron-btn:hover { background: var(--surface-3); }
+  .module-icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: var(--lc-bg); display: flex; align-items: center;
+    justify-content: center; flex-shrink: 0;
+  }
+  .module-icon svg { width: 18px; height: 18px; }
+  .module-header-info { flex: 1; min-width: 0; }
+  .module-name { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .module-progress-row { display: flex; align-items: center; gap: 8px; }
+  .module-track { flex: 1; height: 4px; background: var(--surface-3); border-radius: 99px; overflow: hidden; }
+  .module-fill { height: 100%; border-radius: 99px; background: var(--entri-blue); transition: width 0.6s ease; }
+  .module-credits-text { font-size: 12px; font-weight: 500; color: var(--ink-2); white-space: nowrap; }
+  .module-chevron { color: var(--ink-3); font-size: 14px; transition: transform 0.2s; flex-shrink: 0; }
+  .module-chevron.open { transform: rotate(180deg); }
+
+  /* 2x2 credit grid */
+  .credit-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+    padding: 0 14px 14px; display: none;
+  }
+  .credit-grid.open { display: grid; }
+  .credit-cell {
+    background: var(--surface-2); border-radius: 10px;
+    padding: 12px 14px; border: 1px solid var(--border);
+  }
+  .credit-cell-top { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+  .credit-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .credit-cell-label { font-size: 13px; font-weight: 500; color: var(--ink); }
+  .credit-cell-type { font-size: 12px; color: var(--ink-3); margin-bottom: 8px; }
+  .credit-cell-val { font-size: 20px; font-weight: 500; color: var(--ink); }
+  .credit-cell-val span { font-size: 13px; font-weight: 400; color: var(--ink-3); }
+
+  /* Assignment list inside module */
+  .assignment-list { border-top: 1px solid var(--border); display: none; }
+  .assignment-list.open { display: block; }
+  .assignment-toggle {
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    padding: 10px; font-size: 12px; color: var(--ink-2); cursor: pointer;
+    border-top: 1px solid var(--border); background: var(--surface-2);
+    transition: background 0.15s;
+  }
+  .assignment-toggle:hover { background: var(--surface-3); }
+
+  .a-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 11px 14px; border-bottom: 1px solid var(--border);
+    cursor: pointer; transition: background 0.15s; background: var(--surface);
+  }
+  .a-item:last-child { border-bottom: none; }
+  .a-item:hover { background: var(--surface-2); }
+  .a-item.done { opacity: 0.4; pointer-events: none; }
+  .a-check {
+    width: 20px; height: 20px; border-radius: 50%;
+    border: 1.5px solid var(--border-em); flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; transition: all 0.2s;
+  }
+  .a-check.checked { background: var(--cc); border-color: var(--cc); }
+  .a-check.checked::after {
+    content: ''; display: block; width: 5px; height: 8px;
+    border-right: 2px solid white; border-bottom: 2px solid white;
+    transform: rotate(40deg) translateY(-1px);
+  }
+  .a-info { flex: 1; min-width: 0; }
+  .a-name { font-size: 13px; font-weight: 500; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .a-meta { font-size: 11px; color: var(--ink-3); margin-top: 2px; }
+  .a-credit { font-size: 12px; font-weight: 500; white-space: nowrap; flex-shrink: 0; }
+
+  /* How credits work */
+  .how-credits { padding: 1.75rem 0 0; }
+  .how-credits .section-title { margin-bottom: 1rem; }
+  .credit-explainer { display: flex; flex-direction: column; gap: 8px; }
+  .ce-row {
+    display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px;
+    border: 1px solid var(--border); border-radius: var(--r); background: var(--surface);
+  }
+  .ce-badge {
+    width: 38px; height: 38px; border-radius: 9px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 500;
+  }
+  .ce-info { flex: 1; }
+  .ce-name { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 3px; }
+  .ce-desc { font-size: 12px; color: var(--ink-2); line-height: 1.55; }
+  .ce-weight { font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 700; align-self: center; flex-shrink: 0; color: var(--ink-3); width: 30px; text-align: right; }
+
+  .todo-item { display:flex; align-items:center; gap:10px; padding:12px 14px; border:1px solid var(--border); border-radius:var(--r); background:var(--surface); cursor:pointer; transition:background 0.15s; }
+  .todo-item:hover { background:var(--surface-2); }
+  .todo-item.todo-done { opacity:0.45; pointer-events:none; }
+  .todo-check { width:20px; height:20px; border-radius:50%; border:1.5px solid var(--border-em); flex-shrink:0; display:flex; align-items:center; justify-content:center; transition:all 0.2s; }
+  .todo-check.checked { background:var(--entri-blue); border-color:var(--entri-blue); }
+  .todo-check.checked::after { content:''; display:block; width:5px; height:8px; border-right:2px solid white; border-bottom:2px solid white; transform:rotate(40deg) translateY(-1px); }
+  .todo-info { flex:1; min-width:0; }
+  .todo-name { font-size:13px; font-weight:500; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .todo-meta { font-size:11px; color:var(--ink-3); margin-top:2px; }
+  .todo-credit { font-size:12px; font-weight:500; white-space:nowrap; flex-shrink:0; }
+
+  .credit-type-row { display:flex; align-items:center; gap:14px; padding:14px 16px; border:1px solid var(--border); border-radius:var(--r); background:var(--surface); }
+  .ct-icon { width:44px; height:44px; border-radius:12px; flex-shrink:0; display:flex; align-items:center; justify-content:center; }
+  .ct-info { flex:1; }
+  .ct-name { font-size:14px; font-weight:500; color:var(--ink); margin-bottom:3px; display:flex; align-items:center; gap:4px; }
+  .ct-code { font-weight:600; }
+  .ct-dot { color:var(--ink-4); font-size:12px; }
+  .ct-desc { font-size:12px; color:var(--ink-3); }
+
+  .credit-steps { display: flex; flex-direction: column; margin-bottom: 1.25rem; }
+  .credit-step { display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px; border: 1px solid var(--border); border-radius: var(--r); background: var(--surface); }
+  .step-connector { width: 1px; height: 16px; background: var(--border); margin-left: 31px; }
+  .step-icon-wrap { width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+  .step-info { flex: 1; }
+  .step-name { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 3px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .step-tag { font-size: 10px; font-weight: 500; padding: 2px 7px; border-radius: 99px; }
+  .step-desc { font-size: 12px; color: var(--ink-2); line-height: 1.55; }
+
+  .two-numbers {
+    display: flex; gap: 10px; margin-top: 1.25rem;
+  }
+  .num-card {
+    flex: 1; padding: 14px; border-radius: var(--r); border: 1px solid var(--border);
+    background: var(--surface); text-align: center;
+  }
+  .num-big { font-family: 'Fraunces', serif; font-size: 32px; font-weight: 300; color: var(--ink); line-height: 1; margin-bottom: 6px; }
+  .num-sub { font-size: 12px; color: var(--ink-2); line-height: 1.5; }
+
+  /* Toast */
+  .toast {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px);
+    background: var(--ink); color: var(--surface); padding: 9px 20px;
+    border-radius: 99px; font-size: 13px; font-weight: 500;
+    transition: transform 0.25s ease; z-index: 999; white-space: nowrap; pointer-events: none;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  @keyframes fadeUp { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+  .fade-up { animation: fadeUp 0.35s ease both; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-brand">
+    <svg width="140" height="24" viewBox="0 0 279 47" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M24.3165 46.9178C37.3966 46.9178 48 36.4333 48 23.4999C48 10.5666 37.3966 0.0820312 24.3165 0.0820312C11.2365 0.0820312 0.633057 10.5666 0.633057 23.4999C0.633057 36.4333 11.2365 46.9178 24.3165 46.9178Z" fill="#0089FF"/>
+      <path d="M27.4706 14.2373H16.2402C15.2051 14.2373 14.3661 15.0668 14.3661 16.0904V30.9109C14.3661 31.9345 15.2051 32.764 16.2402 32.764H27.4706C28.5057 32.764 29.3447 31.9345 29.3447 30.9109C29.3447 29.8874 28.5057 29.0578 27.4706 29.0578H18.1129V25.353H27.4706C28.5057 25.353 29.3447 24.5235 29.3447 23.4999C29.3447 22.4764 28.5057 21.6468 27.4706 21.6468H18.1129V17.942H27.4706C28.5057 17.942 29.3447 17.1125 29.3447 16.0889C29.3447 15.0654 28.5057 14.2358 27.4706 14.2358V14.2373Z" fill="white"/>
+      <path d="M39.122 23.088L34.0952 18.1176C33.723 17.7496 33.0873 18.0101 33.0873 18.531V28.469C33.0873 28.9885 33.723 29.249 34.0952 28.8823L39.122 23.9148C39.3525 23.6869 39.3525 23.3174 39.122 23.0895V23.088Z" fill="white"/>
+      <path d="M74.1577 19.0195C73.3588 17.451 72.2979 16.2604 70.9735 15.4464C69.6492 14.6324 68.2003 14.2261 66.6268 14.2261C64.8143 14.2261 63.2107 14.621 61.8148 15.411C60.4189 16.2009 59.3222 17.2924 58.5233 18.6826C57.7244 20.0742 57.325 21.6781 57.325 23.493C57.325 25.3079 57.7129 26.9132 58.4875 28.3034C59.2621 29.695 60.3301 30.7851 61.6888 31.575C63.0475 32.365 64.6095 32.7599 66.3748 32.7599C67.7822 32.7599 69.0335 32.5702 70.1317 32.1937C71.2284 31.8171 72.1762 31.2678 72.9751 30.5487C73.774 29.8295 74.424 28.9744 74.9251 27.9835L70.7029 26.3569C70.3693 27.018 69.8911 27.5545 69.2712 27.9665C68.6513 28.3799 67.8524 28.5851 66.8745 28.5851C66.0627 28.5851 65.3053 28.4138 64.6024 28.0727C63.898 27.7315 63.3267 27.236 62.8857 26.5876C62.5178 26.0469 62.3059 25.4268 62.2443 24.7303H75.3531C75.3531 22.4907 74.9537 20.5866 74.1548 19.0167L74.1577 19.0195ZM62.4992 21.2662C62.5622 20.6135 62.7741 20.0756 63.1392 19.6566C63.5801 19.1497 64.1113 18.7788 64.7312 18.5424C65.3512 18.3074 65.9353 18.1885 66.4837 18.1885C67.032 18.1885 67.5975 18.3074 68.1831 18.5424C68.7672 18.7788 69.2626 19.1497 69.6678 19.6566C70.0028 20.0756 70.1975 20.6135 70.2548 21.2662H62.4992Z" fill="black"/>
+      <path d="M91.3225 15.0769C90.3189 14.5092 89.112 14.2261 87.7017 14.2261C86.2915 14.2261 85.1504 14.5757 84.1339 15.2722C83.4653 15.7309 82.8983 16.3241 82.4258 17.0489L82.2154 14.2261H77.7699V32.7628H82.5017V23.0895C82.5017 21.6003 82.8296 20.4791 83.4882 19.7217C84.1453 18.9657 85.0831 18.5991 86.3029 18.6231C86.9715 18.6231 87.5571 18.7718 88.0597 19.0662C88.5622 19.3621 88.9502 19.8406 89.2251 20.5017C89.5 21.1642 89.6374 22.0972 89.6374 23.3019V32.7628H94.3692V22.3449C94.3921 20.455 94.1416 18.9119 93.6162 17.7185C93.0907 16.5251 92.3262 15.6446 91.3211 15.0769H91.3225Z" fill="black"/>
+      <path d="M107.182 28.2779C106.895 28.3841 106.632 28.4379 106.393 28.4379C105.747 28.4379 105.257 28.2425 104.922 27.8532C104.587 27.4639 104.42 26.8905 104.42 26.1346V18.1984H108.901V14.2274H104.42V10.1801H99.6881V14.2274H96.7845V18.1984H99.6881V27.1623C99.6881 28.9588 100.195 30.3419 101.211 31.3102C102.227 32.28 103.727 32.7641 105.711 32.7641C106.404 32.7641 107.103 32.6282 107.809 32.3564C108.513 32.0846 109.153 31.7363 109.727 31.3102L108.078 27.8008C107.767 28.0132 107.468 28.1731 107.182 28.2793V28.2779Z" fill="black"/>
+      <path d="M116.874 17.5302V14.2261H112.143V32.7628H116.874V22.6988C116.874 21.7772 117.174 21.0213 117.771 20.4295C118.368 19.8392 119.151 19.4131 120.119 19.154C121.087 18.8935 122.12 18.7633 123.22 18.7633V14.2261C121.93 14.2261 120.693 14.5333 119.509 15.1477C118.462 15.6913 117.583 16.4869 116.873 17.5302H116.874Z" fill="black"/>
+      <path d="M130.367 14.2261H125.635V32.7628H130.367V14.2261Z" fill="black"/>
+      <path d="M128 12.9435C128.643 12.9435 129.199 12.7127 129.665 12.2512C130.132 11.7897 130.365 11.2404 130.365 10.6048C130.365 9.96916 130.132 9.41988 129.665 8.95837C129.199 8.49687 128.643 8.26611 128 8.26611C127.357 8.26611 126.828 8.49687 126.35 8.95837C125.871 9.41988 125.634 9.96916 125.634 10.6048C125.634 11.2404 125.871 11.7897 126.35 12.2512C126.826 12.7127 127.377 12.9435 128 12.9435Z" fill="black"/>
+      <path d="M142.5 5.5L142.5 37.5" stroke="#F0F0F0" stroke-width="2" stroke-linecap="round"/>
+      <path d="M164.832 32.9042C163.08 32.9042 161.532 32.5082 160.188 31.7162C158.844 30.9002 157.788 29.7842 157.02 28.3682C156.252 26.9522 155.868 25.3202 155.868 23.4722C155.868 21.6242 156.252 19.9922 157.02 18.5762C157.788 17.1602 158.844 16.0562 160.188 15.2642C161.556 14.4482 163.116 14.0402 164.868 14.0402C166.524 14.0402 167.976 14.4602 169.224 15.3002C170.472 16.1162 171.444 17.2922 172.14 18.8282C172.86 20.3402 173.22 22.1282 173.22 24.1922H158.676L159.324 23.6522C159.324 24.9242 159.576 26.0282 160.08 26.9642C160.584 27.9002 161.268 28.6202 162.132 29.1242C162.996 29.6042 163.98 29.8442 165.084 29.8442C166.284 29.8442 167.28 29.5682 168.072 29.0162C168.888 28.4402 169.524 27.7202 169.98 26.8562L172.932 28.2242C172.452 29.1602 171.828 29.9882 171.06 30.7082C170.292 31.4042 169.38 31.9442 168.324 32.3282C167.292 32.7122 166.128 32.9042 164.832 32.9042ZM159.54 22.0322L158.856 21.4922H170.232L169.584 22.0322C169.584 20.9762 169.368 20.0762 168.936 19.3322C168.504 18.5642 167.928 17.9882 167.208 17.6042C166.488 17.1962 165.684 16.9922 164.796 16.9922C163.932 16.9922 163.092 17.1962 162.276 17.6042C161.484 17.9882 160.824 18.5522 160.296 19.2962C159.792 20.0402 159.54 20.9522 159.54 22.0322ZM176.849 32.4722V7.27217H180.269V32.4722H176.849ZM193.211 32.9042C191.459 32.9042 189.911 32.5082 188.567 31.7162C187.223 30.9002 186.167 29.7842 185.399 28.3682C184.631 26.9522 184.247 25.3202 184.247 23.4722C184.247 21.6242 184.631 19.9922 185.399 18.5762C186.167 17.1602 187.223 16.0562 188.567 15.2642C189.935 14.4482 191.495 14.0402 193.247 14.0402C194.903 14.0402 196.355 14.4602 197.603 15.3002C198.851 16.1162 199.823 17.2922 200.519 18.8282C201.239 20.3402 201.599 22.1282 201.599 24.1922H187.055L187.703 23.6522C187.703 24.9242 187.955 26.0282 188.459 26.9642C188.963 27.9002 189.647 28.6202 190.511 29.1242C191.375 29.6042 192.359 29.8442 193.463 29.8442C194.663 29.8442 195.659 29.5682 196.451 29.0162C197.267 28.4402 197.903 27.7202 198.359 26.8562L201.311 28.2242C200.831 29.1602 200.207 29.9882 199.439 30.7082C198.671 31.4042 197.759 31.9442 196.703 32.3282C195.671 32.7122 194.507 32.9042 193.211 32.9042ZM187.919 22.0322L187.235 21.4922H198.611L197.963 22.0322C197.963 20.9762 197.747 20.0762 197.315 19.3322C196.883 18.5642 196.307 17.9882 195.587 17.6042C194.867 17.1962 194.063 16.9922 193.175 16.9922C192.311 16.9922 191.471 17.1962 190.655 17.6042C189.863 17.9882 189.203 18.5522 188.675 19.2962C188.171 20.0402 187.919 20.9522 187.919 22.0322ZM210.317 32.4722L217.517 14.4722H221.081L213.557 32.4722H210.317ZM210.101 32.4722L202.613 14.4722H206.105L213.305 32.4722H210.101ZM234.6 32.4722L234.456 29.3402V23.0762C234.456 21.7562 234.3 20.6522 233.988 19.7642C233.7 18.8762 233.244 18.2042 232.62 17.7482C232.02 17.2922 231.216 17.0642 230.208 17.0642C229.272 17.0642 228.456 17.2562 227.76 17.6402C227.088 18.0242 226.524 18.6242 226.068 19.4402L223.044 18.2882C223.476 17.4722 224.016 16.7522 224.664 16.1282C225.312 15.4802 226.092 14.9762 227.004 14.6162C227.916 14.2322 228.984 14.0402 230.208 14.0402C231.912 14.0402 233.328 14.3762 234.456 15.0482C235.584 15.7202 236.424 16.6922 236.976 17.9642C237.552 19.2362 237.828 20.8082 237.804 22.6802L237.768 32.4722H234.6ZM229.308 32.9042C227.172 32.9042 225.504 32.4242 224.304 31.4642C223.128 30.4802 222.54 29.1242 222.54 27.3962C222.54 25.5482 223.152 24.1442 224.376 23.1842C225.624 22.2002 227.352 21.7082 229.56 21.7082H234.564V24.4082H230.496C228.84 24.4082 227.676 24.6722 227.004 25.2002C226.332 25.7042 225.996 26.4122 225.996 27.3242C225.996 28.1642 226.308 28.8242 226.932 29.3042C227.58 29.7602 228.468 29.9882 229.596 29.9882C230.58 29.9882 231.432 29.7842 232.152 29.3762C232.872 28.9442 233.436 28.3442 233.844 27.5762C234.252 26.8082 234.456 25.9322 234.456 24.9482H235.644C235.644 27.3962 235.116 29.3402 234.06 30.7802C233.028 32.1962 231.444 32.9042 229.308 32.9042ZM249.308 32.9042C247.508 32.9042 246.116 32.4482 245.132 31.5362C244.148 30.6002 243.656 29.2682 243.656 27.5402V8.85617H247.076V27.0362C247.076 27.9242 247.292 28.6082 247.724 29.0882C248.18 29.5442 248.828 29.7722 249.668 29.7722C249.908 29.7722 250.172 29.7242 250.46 29.6282C250.748 29.5322 251.096 29.3402 251.504 29.0522L252.8 31.7162C252.176 32.1242 251.576 32.4242 251 32.6162C250.448 32.8082 249.884 32.9042 249.308 32.9042ZM240.596 17.4242V14.4722H252.188V17.4242H240.596ZM264.242 32.9042C262.49 32.9042 260.942 32.5082 259.598 31.7162C258.254 30.9002 257.198 29.7842 256.43 28.3682C255.662 26.9522 255.278 25.3202 255.278 23.4722C255.278 21.6242 255.662 19.9922 256.43 18.5762C257.198 17.1602 258.254 16.0562 259.598 15.2642C260.966 14.4482 262.526 14.0402 264.278 14.0402C265.934 14.0402 267.386 14.4602 268.634 15.3002C269.882 16.1162 270.854 17.2922 271.55 18.8282C272.27 20.3402 272.63 22.1282 272.63 24.1922H258.086L258.734 23.6522C258.734 24.9242 258.986 26.0282 259.49 26.9642C259.994 27.9002 260.678 28.6202 261.542 29.1242C262.406 29.6042 263.39 29.8442 264.494 29.8442C265.694 29.8442 266.69 29.5682 267.482 29.0162C268.298 28.4402 268.934 27.7202 269.39 26.8562L272.342 28.2242C271.862 29.1602 271.238 29.9882 270.47 30.7082C269.702 31.4042 268.79 31.9442 267.734 32.3282C266.702 32.7122 265.538 32.9042 264.242 32.9042ZM258.95 22.0322L258.266 21.4922H269.642L268.994 22.0322C268.994 20.9762 268.778 20.0762 268.346 19.3322C267.914 18.5642 267.338 17.9882 266.618 17.6042C265.898 17.1962 265.094 16.9922 264.206 16.9922C263.342 16.9922 262.502 17.1962 261.686 17.6042C260.894 17.9882 260.234 18.5522 259.706 19.2962C259.202 20.0402 258.95 20.9522 258.95 22.0322Z" fill="#0061B5"/>
+    </svg>
+  </div>
+  <div class="topbar-course">Commerce · My Credits</div>
+</div>
+
+
+
+<div class="container">
+
+  <!-- HERO SCORE -->
+  <div class="hero">
+    <div class="hero-eyebrow">Total credit score</div>
+    <div class="score-row">
+      <div class="score-big display" id="score-num">32</div>
+      <div class="score-denom display">/ 100</div>
+    </div>
+    <div class="score-sub" id="score-sub">32 earned · 68 to go</div>
+
+    <div class="track">
+      <div class="track-fill" id="main-fill" style="width:32%"></div>
+      <!-- 50 marker — profile -->
+      <div class="track-marker-wrap" style="left:50%;">
+        <div class="marker-tooltip">50 credits — your profile goes live</div>
+        <div class="track-marker-icon" style="background:#0061b5;">
+          <svg viewBox="0 0 12 12" fill="none"><circle cx="6" cy="4" r="2" fill="white"/><path d="M2 10c0-2.2 1.8-4 4-4s4 1.8 4 4" stroke="white" stroke-width="1.2" stroke-linecap="round"/></svg>
+        </div>
+      </div>
+      <!-- 75 marker — course complete -->
+      <div class="track-marker-wrap" style="left:75%;">
+        <div class="marker-tooltip">75 credits — course complete, certificate issued</div>
+        <div class="track-marker-icon" style="background:#1D9E75;">
+          <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+    </div>
+    <div class="track-labels">
+      <span class="t-lbl" style="left:0;transform:none;">0</span>
+      <span class="t-lbl" style="left:50%">50</span>
+      <span class="t-lbl" style="left:75%">75</span>
+      <span class="t-lbl" style="left:100%;transform:translateX(-100%)">100</span>
+    </div>
+
+    <!-- Completion banners -->
+    <div class="completion" id="banner-50" style="background:#E6F1FB; border:1px solid #B5D4F4;">
+      <div class="completion-title display" style="color:#0C447C; display:flex; align-items:center; gap:6px;">
+        <svg width="16" height="16" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="4" r="2" fill="#0C447C"/><path d="M2 10c0-2.2 1.8-4 4-4s4 1.8 4 4" stroke="#0C447C" stroke-width="1.2" stroke-linecap="round"/></svg>
+        Profile unlocked.
+      </div>
+      <div class="completion-sub" style="color:#185FA5;">Employers can now see your profile. Keep going — 75 credits completes the course.</div>
+    </div>
+    <div class="completion" id="banner-75" style="background:#EAF3DE; border:1px solid #9FE1CB;">
+      <div class="completion-title display" style="color:#085041; display:flex; align-items:center; gap:6px;">
+        <svg width="16" height="16" viewBox="0 0 12 12" fill="none"><path d="M2.5 6.5l2.5 2.5 4.5-5" stroke="#085041" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Course complete.
+      </div>
+      <div class="completion-sub" id="banner-75-sub" style="color:#0F6E56;">You've earned 75+ credits. Your certificate is being issued.</div>
+    </div>
+
+    <!-- Nudge -->
+    <div class="nudge" id="nudge">
+      <div class="nudge-body">
+        <div class="nudge-title" id="nudge-title">
+          <span style="display:inline-flex;align-items:center;gap:5px;">
+            <svg width="14" height="14" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="4" r="2" fill="#0061b5"/><path d="M2 10c0-2.2 1.8-4 4-4s4 1.8 4 4" stroke="#0061b5" stroke-width="1.2" stroke-linecap="round"/></svg>
+            <span id="nudge-title-text">18 credits to go — profile goes live at 50</span>
+          </span>
+        </div>
+        <div class="nudge-sub" id="nudge-sub">Submit the supply chain assignment — fastest path to the next milestone.</div>
+      </div>
+      <div class="nudge-pill" id="nudge-pill">+8 credits</div>
+    </div>
+  </div>
+
+  <!-- TO-DO LIST -->
+  <div class="section" id="todo-section">
+    <div class="section-title display">What to do next</div>
+    <div class="section-sub">Your top 3 actions to earn credits.</div>
+    <div id="todo-list" style="display:flex; flex-direction:column; gap:8px; margin-bottom:1rem;"></div>
+  </div>
+
+  <!-- MODULE CREDITS -->
+  <div class="section">
+    <div class="section-title display">Your module credits</div>
+    <div class="section-sub">Tap any module to see your credit breakdown.</div>
+
+    <!-- Module 1 -->
+    <div class="module-card fade-up">
+      <div class="module-card-header">
+        <div class="module-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
+        <div class="module-header-info">
+          <div class="module-name">Module 1 — Commerce Fundamentals</div>
+          <div class="module-progress-row">
+            <div class="module-track"><div class="module-fill" style="width:100%"></div></div>
+            <div class="module-credits-text">25/25</div>
+          </div>
+        </div>
+        <div class="module-chevron-btn" onclick="toggleModule('m1')"><div class="module-chevron" id="chev-m1">&#8964;</div></div>
+      </div>
+      <div class="credit-grid" id="grid-m1">
+        <div class="credit-cell">
+          <div class="credit-cell-top"><div class="credit-dot" style="background:var(--lc-dot)"></div><div class="credit-cell-label">LC</div></div>
+          <div class="credit-cell-type">Learning Credits</div>
+          <div class="credit-cell-val">5<span>/5</span></div>
+        </div>
+        <div class="credit-cell">
+          <div class="credit-cell-top"><div class="credit-dot" style="background:var(--ac-dot)"></div><div class="credit-cell-label">AC</div></div>
+          <div class="credit-cell-type">Application Credits</div>
+          <div class="credit-cell-val">15<span>/15</span></div>
+        </div>
+        <div class="credit-cell">
+          <div class="credit-cell-top"><div class="credit-dot" style="background:var(--cc-dot)"></div><div class="credit-cell-label">CC</div></div>
+          <div class="credit-cell-type">Contribution Credits</div>
+          <div class="credit-cell-val">3<span>/3</span></div>
+        </div>
+        <div class="credit-cell">
+          <div class="credit-cell-top"><div class="credit-dot" style="background:var(--dc-dot)"></div><div class="credit-cell-label">DC</div></div>
+          <div class="credit-cell-type">Discipline Credits</div>
+          <div class="credit-cell-val">2<span>/2</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Module 2 -->
+    <div class="module-card fade-up">
+      <div class="module-card-header">
+        <div class="module-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
+        <div class="module-header-info">
+          <div class="module-name">Module 2 — Supply Chain Basics</div>
+          <div class="module-progress-row">
+            <div class="module-track"><div class="module-fill" id="m2-bar" style="width:28%"></div></div>
+            <div class="module-credits-text" id="m2-credits-text">7/25</div>
+          </div>
+        </div>
+        <div class="module-chevron-btn" onclick="toggleModule('m2')"><div class="module-chevron" id="chev-m2">&#8964;</div></div>
+      </div>
+      <div class="credit-grid" id="grid-m2">
+        <div class="credit-cell">
+          <div class="credit-cell-top"><div class="credit-dot" style="background:var(--lc-dot)"></div><div class="credit-cell-label">LC</div></div>
+          <div class="credit-cell-type">Learning Credits</div>
+          <div class="credit-cell-val" id="m2-lc-val">5<span>/5</span></div>
+        </div>
+        <div class="credit-cell">
+          <div class="credit-cell-top"><div class="credit-dot" style="background:var(--ac-dot)"></div><div class="credit-cell-label">AC</div></div>
+          <div class="credit-cell-type">Application Credits</div>
+          <div class="credit-cell-val" id="m2-ac-val">0<span>/15</span></div>
+        </div>
+        <div class="credit-cell">
+          <div class="credit-cell-top"><div class="credit-dot" style="background:var(--cc-dot)"></div><div class="credit-cell-label">CC</div></div>
+          <div class="credit-cell-type">Contribution Credits</div>
+          <div class="credit-cell-val" id="m2-cc-val">0<span>/3</span></div>
+        </div>
+        <div class="credit-cell">
+          <div class="credit-cell-top"><div class="credit-dot" style="background:var(--dc-dot)"></div><div class="credit-cell-label">DC</div></div>
+          <div class="credit-cell-type">Discipline Credits</div>
+          <div class="credit-cell-val" id="m2-dc-val">2<span>/2</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Module 3 -->
+    <div class="module-card fade-up">
+      <div class="module-card-header">
+        <div class="module-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
+        <div class="module-header-info">
+          <div class="module-name">Module 3 — Data &amp; Analytics</div>
+          <div class="module-progress-row">
+            <div class="module-track"><div class="module-fill" id="m3-bar" style="width:0%"></div></div>
+            <div class="module-credits-text" id="m3-credits-text">0/25</div>
+          </div>
+        </div>
+        <div class="module-chevron-btn" onclick="toggleModule('m3')"><div class="module-chevron" id="chev-m3">&#8964;</div></div>
+      </div>
+      <div class="credit-grid" id="grid-m3">
+        <div class="credit-cell">
+          <div class="credit-cell-top"><div class="credit-dot" style="background:var(--lc-dot)"></div><div class="credit-cell-label">LC</div></div>
+          <div class="credit-cell-type">Learning Credits</div>
+          <div class="credit-cell-val" id="m3-lc-val">0<span>/5</span></div>
+        </div>
+        <div class="credit-cell">
+          <div class="credit-cell-top"><div class="credit-dot" style="background:var(--ac-dot)"></div><div class="credit-cell-label">AC</div></div>
+          <div class="credit-cell-type">Application Credits</div>
+          <div class="credit-cell-val" id="m3-ac-val">0<span>/15</span></div>
+        </div>
+        <div class="credit-cell">
+          <div class="credit-cell-top"><div class="credit-dot" style="background:var(--cc-dot)"></div><div class="credit-cell-label">CC</div></div>
+          <div class="credit-cell-type">Contribution Credits</div>
+          <div class="credit-cell-val" id="m3-cc-val">0<span>/3</span></div>
+        </div>
+        <div class="credit-cell">
+          <div class="credit-cell-top"><div class="credit-dot" style="background:var(--dc-dot)"></div><div class="credit-cell-label">DC</div></div>
+          <div class="credit-cell-type">Discipline Credits</div>
+          <div class="credit-cell-val" id="m3-dc-val">0<span>/2</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Module 4 -->
+    <div class="module-card fade-up">
+      <div class="module-card-header">
+        <div class="module-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
+        <div class="module-header-info">
+          <div class="module-name">Module 4 — Capstone Project</div>
+          <div class="module-progress-row">
+            <div class="module-track"><div class="module-fill" id="m4-bar" style="width:0%"></div></div>
+            <div class="module-credits-text" id="m4-credits-text">0/25</div>
+          </div>
+        </div>
+        <div class="module-chevron-btn" onclick="toggleModule('m4')"><div class="module-chevron" id="chev-m4">&#8964;</div></div>
+      </div>
+      <div class="credit-grid" id="grid-m4">
+        <div class="credit-cell">
+          <div class="credit-cell-top"><div class="credit-dot" style="background:var(--lc-dot)"></div><div class="credit-cell-label">LC</div></div>
+          <div class="credit-cell-type">Learning Credits</div>
+          <div class="credit-cell-val" id="m4-lc-val">0<span>/5</span></div>
+        </div>
+        <div class="credit-cell">
+          <div class="credit-cell-top"><div class="credit-dot" style="background:var(--ac-dot)"></div><div class="credit-cell-label">AC</div></div>
+          <div class="credit-cell-type">Application Credits</div>
+          <div class="credit-cell-val" id="m4-ac-val">0<span>/15</span></div>
+        </div>
+        <div class="credit-cell">
+          <div class="credit-cell-top"><div class="credit-dot" style="background:var(--cc-dot)"></div><div class="credit-cell-label">CC</div></div>
+          <div class="credit-cell-type">Contribution Credits</div>
+          <div class="credit-cell-val" id="m4-cc-val">0<span>/3</span></div>
+        </div>
+        <div class="credit-cell">
+          <div class="credit-cell-top"><div class="credit-dot" style="background:var(--dc-dot)"></div><div class="credit-cell-label">DC</div></div>
+          <div class="credit-cell-type">Discipline Credits</div>
+          <div class="credit-cell-val" id="m4-dc-val">0<span>/2</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT ARE CREDITS — bottom -->
+  <div class="how-credits">
+    <div class="section-title display">What are credits?</div>
+    <div style="font-size:13px; color:var(--ink-2); margin-bottom:1.25rem; line-height:1.6;">Credits are how we measure your progress. Every activity you complete earns credits — and your score shows how ready you are for placement.</div>
+
+    <div class="credit-steps">
+      <div class="credit-step">
+        <div class="step-icon-wrap" style="background:var(--lc-bg);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--lc)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+        </div>
+        <div class="step-info">
+          <div class="step-name">Learn content <span class="step-tag" style="background:var(--lc-bg);color:var(--lc);">LC</span></div>
+          <div class="step-desc">Watch videos and read materials to earn Learning Credits</div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="credit-step">
+        <div class="step-icon-wrap" style="background:var(--ac-bg);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ac)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        </div>
+        <div class="step-info">
+          <div class="step-name">Submit assignments <span class="step-tag" style="background:var(--ac-bg);color:var(--ac);">AC</span></div>
+          <div class="step-desc">Score 60%+ on assignments and projects to earn Application Credits — the most important type, worth 60% of your total</div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="credit-step">
+        <div class="step-icon-wrap" style="background:var(--dc-bg);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--dc)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="step-info">
+          <div class="step-name">Show up consistently <span class="step-tag" style="background:var(--dc-bg);color:var(--dc);">DC</span></div>
+          <div class="step-desc">Attend live sessions and keep your streak going to earn Discipline Credits</div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="credit-step">
+        <div class="step-icon-wrap" style="background:var(--cc-bg);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--cc)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <div class="step-info">
+          <div class="step-name">Help your peers <span class="step-tag" style="background:var(--cc-bg);color:var(--cc);">CC</span></div>
+          <div class="step-desc">Lead study groups and mentor others to earn Contribution Credits — awarded by your mentor</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:1.75rem;">
+      <div class="section-title display" style="margin-bottom:1rem;">Types of credits</div>
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <div class="credit-type-row">
+          <div class="ct-icon" style="background:var(--lc-bg);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--lc)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          </div>
+          <div class="ct-info">
+            <div class="ct-name"><span class="ct-code" style="color:var(--lc);">LC</span> <span class="ct-dot">•</span> Learning Credits</div>
+            <div class="ct-desc">Earned from quizzes and assessments</div>
+          </div>
+        </div>
+        <div class="credit-type-row" style="border:1.5px solid var(--ac-bg); position:relative;">
+          <div class="ct-icon" style="background:var(--ac-bg);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ac)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+          </div>
+          <div class="ct-info">
+            <div class="ct-name" style="display:flex; align-items:center; flex-wrap:wrap; gap:6px;">
+              <span class="ct-code" style="color:var(--ac);">AC</span> <span class="ct-dot">•</span> Application Credits
+              <span style="font-size:10px; font-weight:500; padding:2px 8px; border-radius:99px; background:var(--ac-bg); color:var(--ac);">Most important · 60%</span>
+            </div>
+            <div class="ct-desc">Complete assignments and projects</div>
+          </div>
+        </div>
+        <div class="credit-type-row">
+          <div class="ct-icon" style="background:var(--cc-bg);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--cc)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <div class="ct-info">
+            <div class="ct-name"><span class="ct-code" style="color:var(--cc);">CC</span> <span class="ct-dot">•</span> Contribution Credits</div>
+            <div class="ct-desc">Mentoring and teamwork activities</div>
+          </div>
+        </div>
+        <div class="credit-type-row">
+          <div class="ct-icon" style="background:var(--dc-bg);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--dc)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+          </div>
+          <div class="ct-info">
+            <div class="ct-name"><span class="ct-code" style="color:var(--dc);">DC</span> <span class="ct-dot">•</span> Discipline Credits</div>
+            <div class="ct-desc">Consistency and attendance rewards</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:1.75rem;">
+      <div class="section-title display" style="margin-bottom:0.25rem;">What your score unlocks</div>
+      <div style="font-size:13px; color:var(--ink-2); margin-bottom:1rem; line-height:1.6;">Two milestones that matter most in your journey.</div>
+      <div class="two-numbers">
+        <div class="num-card" style="border-color:#B5D4F4;">
+          <div style="display:flex; align-items:center; justify-content:center; gap:6px; margin-bottom:6px;">
+            <div style="width:28px;height:28px;border-radius:50%;background:#0061b5;display:flex;align-items:center;justify-content:center;">
+              <svg width="14" height="14" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="4" r="2" fill="white"/><path d="M2 10c0-2.2 1.8-4 4-4s4 1.8 4 4" stroke="white" stroke-width="1.2" stroke-linecap="round"/></svg>
+            </div>
+            <div class="num-big display" style="font-size:28px; margin-bottom:0;">50</div>
+          </div>
+          <div class="num-sub">Your profile becomes visible to employers</div>
+        </div>
+        <div class="num-card" style="border-color:#9FE1CB;">
+          <div style="display:flex; align-items:center; justify-content:center; gap:6px; margin-bottom:6px;">
+            <div style="width:28px;height:28px;border-radius:50%;background:#1D9E75;display:flex;align-items:center;justify-content:center;">
+              <svg width="14" height="14" viewBox="0 0 12 12" fill="none"><path d="M2.5 6.5l2.5 2.5 4.5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="num-big display" style="font-size:28px; margin-bottom:0;">75</div>
+          </div>
+          <div class="num-sub">Course complete — certificate issued</div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+var score = 32;
+var done = {};
+var earnedCredits = { ac:18, lc:7, dc:4, cc:3 };
+
+// AC=60%, LC=20%, DC=10%, CC=10% of 100
+var caps = { ac:60, lc:20, dc:10, cc:10 };
+
+// Top 3 actionable items — clicking navigates to content page
+var todoItems = [
+  { id:'supply', name:'Supply chain analysis', meta:'Module 2 · Assignment', credit:'+8 credits', color:'var(--ac)', url:'#assignment-supply' },
+  { id:'m2quiz', name:'Module 2 end quiz', meta:'Module 2 · Quiz', credit:'+3 credits', color:'var(--lc)', url:'#quiz-m2' },
+  { id:'live2', name:'Attend live session', meta:'Module 2 · Live class', credit:'+2 credits', color:'var(--dc)', url:'#live-classes' }
+];
+
+function renderTodo() {
+  var list = document.getElementById('todo-list');
+  list.innerHTML = '';
+  todoItems.slice(0, 3).forEach(function(t) {
+    var div = document.createElement('div');
+    div.className = 'todo-item';
+    div.style.cssText = 'display:flex;align-items:center;gap:10px;padding:12px 14px;border:1px solid var(--border);border-radius:var(--r);background:var(--surface);cursor:pointer;transition:background 0.15s;text-decoration:none;';
+    div.innerHTML =
+      '<div style="width:32px;height:32px;border-radius:var(--r);background:var(--entri-blue-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0;">' +
+        '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 5l3 3-3 3" stroke="var(--entri-blue)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+      '</div>' +
+      '<div style="flex:1;min-width:0;">' +
+        '<div style="font-size:13px;font-weight:500;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + t.name + '</div>' +
+        '<div style="font-size:11px;color:var(--ink-3);margin-top:2px;">' + t.meta + '</div>' +
+      '</div>' +
+      '<div style="font-size:12px;font-weight:500;color:var(--entri-blue);white-space:nowrap;">' + t.credit + '</div>';
+    div.onclick = function() { showToast('Opening ' + t.name + '…'); };
+    div.onmouseenter = function() { div.style.background = 'var(--surface-2)'; };
+    div.onmouseleave = function() { div.style.background = 'var(--surface)'; };
+    list.appendChild(div);
+  });
+}
+
+function updateNudge() {
+  var titleEl = document.getElementById('nudge-title-text');
+  var subEl = document.getElementById('nudge-sub');
+  var pillEl = document.getElementById('nudge-pill');
+  if (score >= 75) {
+    document.getElementById('nudge').style.display = 'none';
+  } else if (score >= 50) {
+    var rem = 75 - score;
+    if (titleEl) titleEl.textContent = rem + ' credits to go — complete the course at 75';
+    if (subEl) subEl.textContent = 'Keep submitting assignments — AC credits get you there fastest.';
+    if (pillEl) pillEl.textContent = '+' + rem + ' credits';
+    // swap icon to completion checkmark
+    var iconEl = document.querySelector('#nudge-title svg');
+    if (iconEl) { iconEl.innerHTML = '<path d="M2.5 6.5l2.5 2.5 4.5-5" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>'; iconEl.querySelector('circle') && iconEl.querySelector('circle').remove(); }
+  } else {
+    var rem = 50 - score;
+    if (titleEl) titleEl.textContent = rem + ' credits to go — profile goes live at 50';
+    if (subEl) subEl.textContent = 'Submit the supply chain assignment — fastest path to the next milestone.';
+    if (pillEl) pillEl.textContent = '+8 credits';
+  }
+}
+
+function toggleModule(id) {
+  var grid = document.getElementById('grid-' + id);
+  var chev = document.getElementById('chev-' + id);
+  var isOpen = grid.classList.contains('open');
+  grid.classList.toggle('open', !isOpen);
+  chev.classList.toggle('open', !isOpen);
+}
+
+function updateBreakdownLabels() {
+  ['ac','lc','dc','cc'].forEach(function(t) {
+    var el = document.getElementById('val-' + t);
+    var bar = document.getElementById('bar-' + t);
+    var e = earnedCredits[t] || 0;
+    if (el) el.textContent = e + ' / ' + caps[t];
+    if (bar) bar.style.width = Math.min(Math.round((e / caps[t]) * 100), 100) + '%';
+  });
+}
+
+function updateScoreUI() {
+  document.getElementById('score-num').textContent = score;
+  document.getElementById('score-sub').textContent = score + ' earned · ' + (100 - score) + ' to go';
+  document.getElementById('main-fill').style.width = Math.min(score, 100) + '%';
+
+  ['ac','lc','dc','cc'].forEach(function(t) {
+    var bar = document.getElementById('bar-' + t);
+    var val = document.getElementById('val-' + t);
+    var e = earnedCredits[t] || 0;
+    if (bar) bar.style.width = Math.min(Math.round((e / caps[t]) * 100), 100) + '%';
+    if (val) val.textContent = e + ' / ' + caps[t];
+  });
+
+  var b50 = document.getElementById('banner-50');
+  var b75 = document.getElementById('banner-75');
+  var nudge = document.getElementById('nudge');
+
+  if (score >= 75) {
+    if (b50) b50.classList.remove('show');
+    if (b75) b75.classList.add('show');
+    if (nudge) nudge.style.display = 'none';
+  } else if (score >= 50) {
+    if (b50) b50.classList.add('show');
+    if (b75) b75.classList.remove('show');
+    if (nudge) nudge.style.display = 'flex';
+  } else {
+    if (b50) b50.classList.remove('show');
+    if (b75) b75.classList.remove('show');
+    if (nudge) nudge.style.display = 'flex';
+  }
+  updateNudge();
+}
+
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function() { t.classList.remove('show'); }, 2200);
+}
+
+updateNudge();
+updateBreakdownLabels();
+renderTodo();
+</script>
+
+var todoItems = [
+  { id:'supply', name:'Supply chain analysis', meta:'Module 2 · Assignment · AC', credit:'+8 AC', color:'var(--ac)', done:false },
+  { id:'vendor', name:'Vendor evaluation report', meta:'Module 2 · Assignment · AC', credit:'+6 AC', color:'var(--ac)', done:false },
+  { id:'m2quiz', name:'Module 2 end quiz', meta:'Module 2 · Quiz · LC', credit:'+3 LC', color:'var(--lc)', done:false },
+  { id:'live2', name:'Attend live session', meta:'Module 2 · Attendance · DC', credit:'+2 DC', color:'var(--dc)', done:false },
+  { id:'peer2', name:'Lead peer study group', meta:'Module 2 · Contribution · CC', credit:'+3 CC', color:'var(--cc)', done:false },
+  { id:'data', name:'Data analytics case study', meta:'Module 3 · Assignment · AC', credit:'+7 AC', color:'var(--ac)', done:false },
+  { id:'dash', name:'Build a sales dashboard', meta:'Module 3 · Project · AC', credit:'+7 AC', color:'var(--ac)', done:false },
+  { id:'cap', name:'Final capstone project', meta:'Module 4 · Project · AC', credit:'+18 AC', color:'var(--ac)', done:false }
+];
+var completedItems = [];
+
+function renderTodo() {
+  var typeOrder = archTodoOrder[arch];
+  var pending = todoItems.filter(function(t) { return !t.done; });
+
+  pending.sort(function(a, b) {
+    var typeA = a.credit.slice(-2).toLowerCase();
+    var typeB = b.credit.slice(-2).toLowerCase();
+    var ai = typeOrder.indexOf(typeA);
+    var bi = typeOrder.indexOf(typeB);
+    if (ai === -1) ai = 99;
+    if (bi === -1) bi = 99;
+    return ai - bi;
+  });
+
+  var list = document.getElementById('todo-list');
+  list.innerHTML = '';
+  pending.slice(0, 5).forEach(function(t) {
+    var div = document.createElement('div');
+    div.className = 'todo-item';
+    div.id = 'todo-' + t.id;
+    div.innerHTML =
+      '<div class="todo-check" id="tdchk-' + t.id + '"></div>' +
+      '<div class="todo-info"><div class="todo-name">' + t.name + '</div><div class="todo-meta">' + t.meta + '</div></div>' +
+      '<div class="todo-credit" style="color:' + t.color + ';">' + t.credit + '</div>';
+    div.onclick = function() { markTodoDone(t.id); };
+    list.appendChild(div);
+  });
+
+  var compToggle = document.getElementById('completed-toggle');
+  var compList = document.getElementById('completed-list');
+  if (completedItems.length > 0) {
+    compToggle.style.display = 'block';
+    compList.innerHTML = '';
+    completedItems.forEach(function(t) {
+      var div = document.createElement('div');
+      div.className = 'todo-item todo-done';
+      div.innerHTML =
+        '<div class="todo-check checked"></div>' +
+        '<div class="todo-info"><div class="todo-name">' + t.name + '</div><div class="todo-meta">' + t.meta + '</div></div>' +
+        '<div class="todo-credit" style="color:var(--ink-3);">' + t.credit + '</div>';
+      compList.appendChild(div);
+    });
+  } else {
+    compToggle.style.display = 'none';
+  }
+}
+
+function markTodoDone(id) {
+  var item = todoItems.find(function(t) { return t.id === id; });
+  if (!item || item.done) return;
+  item.done = true;
+  completedItems.unshift(item);
+  renderTodo();
+}
+
+function toggleCompleted() {
+  var list = document.getElementById('completed-list');
+  var chev = document.getElementById('completed-chev');
+  var label = document.getElementById('completed-toggle-label');
+  var isOpen = list.style.display === 'flex';
+  list.style.display = isOpen ? 'none' : 'flex';
+  chev.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+  label.textContent = isOpen ? 'Show recently completed' : 'Hide completed';
+}
+
+
+var archCaps = {
+  achiever:    { ac:60, lc:25, dc:10, cc:5  },
+  explorer:    { ac:60, lc:25, dc:10, cc:5  },
+  contributor: { ac:60, lc:10, dc:10, cc:20 },
+  builder:     { ac:60, lc:15, dc:15, cc:10 }
+};
+
+var archTodoOrder = {
+  achiever:    ['lc','ac','dc','cc'],
+  explorer:    ['lc','ac','cc','dc'],
+  contributor: ['cc','ac','lc','dc'],
+  builder:     ['ac','dc','lc','cc']
+};
+
+var moduleState = {
+  m2: { lc:5, ac:0, cc:0, dc:0, total:16, max:48 },
+  m3: { lc:0, ac:0, cc:0, dc:0, total:0, max:48 },
+  m4: { lc:0, ac:0, cc:0, dc:0, total:0, max:20 }
+};
+
+var nudgeData = {
+  achiever: {
+    u40: ['credits away from your profile going live', 'Submit the supply chain assignment — it\'s your fastest path forward.', '+8 AC'],
+    u60: ['more credits and the course is yours', 'You\'re close. Close the open assignments in Module 2.', 'almost there'],
+    done: ['You finished. That\'s what Achievers do.', 'Certificate incoming. Your placement profile is live.', '100 possible']
+  },
+  explorer: {
+    u40: ['credits away — your LC is strong, now apply it', 'Pick one assignment and submit. AC needs to catch up.', '+8 AC'],
+    u60: ['more credits. Broad base built — time to apply it.', 'Module 3 is where your curiosity pays off in credits.', 'go deep'],
+    done: ['Explored and completed. Rare combination.', 'Strong LC profile and full AC. Certificate issued.', 'done']
+  },
+  contributor: {
+    u40: ['credits away — a peer session this week also helps', 'Lead a study group for CC credits. And close that assignment.', '+3 CC'],
+    u60: ['more to go. Your cohort notices your help.', 'Keep mentoring. Don\'t let AC slip — it\'s 60% of your score.', 'keep going'],
+    done: ['You lifted others while lifting yourself.', 'Full credits. CC stands out in your placement profile.', 'complete']
+  },
+  builder: {
+    u40: ['credits away — build something to earn them', 'The supply chain assignment is a real deliverable. Submit it.', '+8 AC'],
+    u60: ['more credits. The capstone is where Builders shine.', 'Complete Module 3 assignments to unlock the capstone project.', 'unlock cap'],
+    done: ['Built it all. Course complete.', 'The capstone is your strongest piece. Certificate issued.', 'done']
+  }
+};
+
+function setArch(a, el) {
+  arch = a;
+  document.querySelectorAll('.arch-chip').forEach(function(c) { c.classList.remove('active'); });
+  el.classList.add('active');
+  applyArchCaps();
+  updateNudge();
+  renderTodo();
+}
+
+function applyArchCaps() {
+  updateBreakdownLabels();
+  renderTodo();
+}
+
+function updateBreakdownLabels() {
+  var caps = archCaps[arch];
+  ['ac','lc','dc','cc'].forEach(function(t) {
+    var el = document.getElementById('val-' + t);
+    var bar = document.getElementById('bar-' + t);
+    var e = earnedCredits[t] || 0;
+    if (el) el.textContent = e + ' / ' + caps[t];
+    if (bar) bar.style.width = Math.min(Math.round((e / caps[t]) * 100), 100) + '%';
+  });
+}
+
+
+function updateNudge() {
+  var d = nudgeData[arch];
+  var set = score < 40 ? d.u40 : score < 60 ? d.u60 : d.done;
+  var rem = score < 40 ? (40 - score) : score < 60 ? (60 - score) : 0;
+  var title = score >= 60 ? set[0] : rem + ' ' + set[0];
+  document.getElementById('nudge-title').textContent = title;
+  document.getElementById('nudge-sub').textContent = set[1];
+  document.getElementById('nudge-pill').textContent = set[2];
+}
+
+function toggleModule(id) {
+  var grid = document.getElementById('grid-' + id);
+  var chev = document.getElementById('chev-' + id);
+  var atoggle = document.getElementById('atoggle-' + id);
+  var isOpen = grid.classList.contains('open');
+  grid.classList.toggle('open', !isOpen);
+  chev.classList.toggle('open', !isOpen);
+  if (atoggle) atoggle.style.display = isOpen ? 'none' : 'flex';
+}
+
+function toggleAssignments(id) {
+  var list = document.getElementById('alist-' + id);
+  var label = document.getElementById('atoggle-' + id + '-label');
+  var isOpen = list.classList.contains('open');
+  list.classList.toggle('open', !isOpen);
+  label.textContent = isOpen ? 'Show assignments' : 'Hide assignments';
+}
+
+function earn(taskId, val, type, mod, modVal, modMax) {
+  if (done[taskId]) return;
+  done[taskId] = true;
+  markTodoDone(taskId);
+
+  score = Math.min(score + val, 100);
+  earnedCredits[type] = Math.min((earnedCredits[type] || 0) + val, archCaps[arch][type]);
+
+  if (mod && moduleState[mod]) {
+    moduleState[mod][type] = Math.min(moduleState[mod][type] + val, modMax || 99);
+    moduleState[mod].total = Math.min(moduleState[mod].total + val, moduleState[mod].max);
+    updateModuleUI(mod);
+  }
+
+  var el = document.getElementById('task-' + taskId);
+  var chk = document.getElementById('chk-' + taskId);
+  if (chk) chk.classList.add('checked');
+  if (el) setTimeout(function() { el.classList.add('done'); }, 350);
+
+  updateScoreUI();
+  var labels = { lc:'LC', ac:'AC', cc:'CC', dc:'DC' };
+  showToast('+' + val + ' ' + labels[type] + ' earned');
+}
+
+function updateModuleUI(mod) {
+  var s = moduleState[mod];
+  var pct = Math.round((s.total / s.max) * 100);
+  var bar = document.getElementById(mod + '-bar');
+  var txt = document.getElementById(mod + '-credits-text');
+  if (bar) bar.style.width = pct + '%';
+  if (txt) txt.textContent = s.total + '/' + s.max;
+
+  ['lc','ac','cc','dc'].forEach(function(t) {
+    var el = document.getElementById(mod + '-' + t + '-val');
+    if (el) {
+      var max = el.querySelector('span').textContent.replace('/','');
+      el.childNodes[0].textContent = s[t];
+    }
+  });
+}
+
+function updateScoreUI() {
+  var caps = archCaps[arch];
+  var earned = { ac:18, lc:14, dc:0, cc:0 };
+
+  document.getElementById('score-num').textContent = score;
+  document.getElementById('score-sub').textContent = score + ' earned · ' + (100 - score) + ' to go';
+  document.getElementById('main-fill').style.width = Math.min(score, 100) + '%';
+
+  ['ac','lc','dc','cc'].forEach(function(t) {
+    var bar = document.getElementById('bar-' + t);
+    var val = document.getElementById('val-' + t);
+    var e = earnedCredits[t] !== undefined ? earnedCredits[t] : earned[t];
+    if (bar) bar.style.width = Math.min(Math.round((e / caps[t]) * 100), 100) + '%';
+    if (val) val.textContent = e + ' / ' + caps[t];
+  });
+
+  if (score >= 60) {
+    document.getElementById('banner-40').classList.remove('show');
+    document.getElementById('banner-60').classList.add('show');
+    document.getElementById('banner-60-sub').textContent = "You've earned " + score + " credits. Your certificate is being issued.";
+    document.getElementById('nudge').style.display = 'none';
+  } else if (score >= 40) {
+    document.getElementById('banner-40').classList.add('show');
+    document.getElementById('nudge').style.display = 'flex';
+    updateNudge();
+  } else {
+    updateNudge();
+  }
+}
+
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function() { t.classList.remove('show'); }, 2200);
+}
+
+updateNudge();
+updateBreakdownLabels();
+renderTodo();
+</script>
+</body>
+</html>
